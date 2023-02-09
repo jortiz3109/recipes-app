@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+    app:
+        container_name: twitch_app
+        tty: true
+        build:
+            context: ./docker/app
+            dockerfile: Dockerfile
+        volumes:
+            -  '.:/var/www/html'
+        ports:
+            - '${APP_PORT:-8000}:80/tcp'
+            - '${VITE_PORT:-5173}:5173/tcp'
+        depends_on:
+            -   mariadb
+        networks:
+            - twitch_app
+    mariadb:
+        container_name: twitch_db
+        image: 'mariadb:10'
+        ports:
+            -   '127.0.0.1:${EXTERNAL_DB_PORT:-13306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        volumes:
+            -   'app-mariadb:/var/lib/mysql/'
+        networks:
+            - twitch_app
+volumes:
+    app-mariadb:
+        driver: local
+networks:
+    twitch_app:
+        driver: bridge
