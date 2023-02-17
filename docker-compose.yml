@@ -1,7 +1,7 @@
 version: '3.9'
 services:
     app:
-        container_name: twitch_app
+        container_name: app
         tty: true
         build:
             context: ./docker/app
@@ -14,9 +14,9 @@ services:
         depends_on:
             - mariadb
         networks:
-            - twitch_app
+            - recipes
     mariadb:
-        container_name: twitch_db
+        container_name: db
         image: mariadb:10
         ports:
             - '127.0.0.1:${EXTERNAL_DB_PORT:-13306}:3306'
@@ -27,13 +27,13 @@ services:
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD:-dbUserSecret}'
         volumes:
-            - app-mariadb:/var/lib/mysql:rw
+            - mariadb:/var/lib/mysql:rw
             - ./docker/mariadb/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh:ro
         networks:
-            - twitch_app
+            - recipes
 volumes:
-    app-mariadb:
+    mariadb:
         driver: local
 networks:
-    twitch_app:
+    recipes:
         driver: bridge
