@@ -7,28 +7,28 @@ services:
             context: ./docker/app
             dockerfile: Dockerfile
         volumes:
-            -  '.:/var/www/html'
+            - '.:/var/www/html'
         ports:
             - '${APP_PORT:-8000}:80/tcp'
             - '${VITE_PORT:-5173}:5173/tcp'
         depends_on:
-            -   mariadb
+            - mariadb
         networks:
             - twitch_app
     mariadb:
         container_name: twitch_db
-        image: 'mariadb:10'
+        image: mariadb:10
         ports:
-            -   '127.0.0.1:${EXTERNAL_DB_PORT:-13306}:3306'
+            - '127.0.0.1:${EXTERNAL_DB_PORT:-13306}:3306'
         environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-dbRootSecret}'
             MYSQL_ROOT_HOST: "%"
             MYSQL_DATABASE: '${DB_DATABASE}'
             MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+            MYSQL_PASSWORD: '${DB_PASSWORD:-dbUserSecret}'
         volumes:
-            -   'app-mariadb:/var/lib/mysql/'
+            - app-mariadb:/var/lib/mysql:rw
+            - ./docker/mariadb/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh:ro
         networks:
             - twitch_app
 volumes:
