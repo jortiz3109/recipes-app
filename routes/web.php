@@ -17,4 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::view('home', 'home');
+});
+
 Route::view('/twitch', 'twitch');
