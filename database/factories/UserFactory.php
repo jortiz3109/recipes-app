@@ -37,4 +37,11 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function disabled()
+    {
+        return $this->state(fn (array $attributes) => [
+            'disabled_at' => now()
+        ]);
+    }
 }
