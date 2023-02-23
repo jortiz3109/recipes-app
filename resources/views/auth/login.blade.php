@@ -1,10 +1,7 @@
 @extends('layouts.app')
 @push('content')
-    <div class="vh-100 d-flex justify-content-center align-items-center">
-        <div class="card w-25">
-            <div class="card-header">
-                <h5 class="card-title">{{ trans('auth.login.title') }}</h5>
-            </div>
+    <div class="container-login vh-100 d-flex justify-content-center align-items-center">
+        <div class="card w-25 card-login">
             <div class="card-body">
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
