@@ -53,4 +53,24 @@ class LoginTest extends TestCase
 
         $response->assertRedirect('/');
     }
+
+    public function testDisabledUserCannotLogin(): void
+    {
+        $user = User::factory()->disabled()->create();
+
+        $response = $this->post('login', ['email' => $user->email, 'password' => 'password']);
+
+        $response->assertSessionHasErrors(['email']);
+    }
+
+    public function testAuthenticatedUserIsBlockedWhenIsDisabled(): void
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->get('home');
+        $response->assertOk();
+
+        $user->update(['disabled_at' => now()]);
+        $response = $this->actingAs($user)->get('home');
+        $response->assertRedirect('user-is-disabled');
+    }
 }
