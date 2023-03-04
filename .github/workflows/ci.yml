@@ -47,6 +47,16 @@ jobs:
           cp .env.ci .env
           php artisan key:generate
 
+      - name: Install NODE
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: compile assets
+        run: |
+          npm ci
+          npm run build
+
       - name: Filesystem permissions
         run: chmod a=rwx storage bootstrap/cache
 
