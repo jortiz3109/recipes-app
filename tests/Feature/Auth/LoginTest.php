@@ -14,6 +14,7 @@ class LoginTest extends TestCase
 
     public function testItShowsTheLoginPage(): void
     {
+        $this->withoutVite();
         $response = $this->get('/login');
 
         $response->assertOk();
@@ -21,6 +22,7 @@ class LoginTest extends TestCase
 
     public function testLoginPageHasCorrectFields(): void
     {
+        $this->withoutVite();
         $response = $this->get('/login');
 
         $response->assertSeeText(trans('auth.login.email.label'));
