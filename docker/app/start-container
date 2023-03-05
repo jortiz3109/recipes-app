@@ -2,5 +2,8 @@
 if [ $# -gt 0 ]; then
     exec gosu 1000 "$@"
 else
+    if [ ! -d "./vendor" ] || [ ! -d "./node_modules"]; then
+        composer install --no-interaction && pnpm install
+    fi
     exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
 fi
