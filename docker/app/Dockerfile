@@ -2,7 +2,7 @@ FROM debian
 
 LABEL maintainer="John Edisson Ortiz"
 
-ARG NODE_VERSION=16
+ARG NODE_VERSION=19
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
@@ -27,7 +27,8 @@ RUN apt update \
 
 RUN curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
     && apt install -y nodejs \
-    && npm install -g npm
+    && npm install -g npm \
+    && npm install -g pnpm
 
 RUN apt install -y mariadb-client supervisor\
     && apt-get -y autoremove \
@@ -39,9 +40,11 @@ RUN mkdir -p /home/app/.composer \
     && chown -R app /home/app/.composer
 
 COPY start-container /usr/local/bin/start-container
+COPY serve-container /usr/local/bin/serve-container
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.2/cli/conf.d/99-app.ini
 RUN chmod +x /usr/local/bin/start-container
+RUN chmod +x /usr/local/bin/serve-container
 
 WORKDIR /var/www/html
 
