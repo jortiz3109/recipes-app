@@ -6,13 +6,15 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class LoginTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     public function testItShowsTheLoginPage(): void
     {
+        $this->withoutVite();
         $response = $this->get('/login');
 
         $response->assertOk();
@@ -20,6 +22,7 @@ class LoginTest extends TestCase
 
     public function testLoginPageHasCorrectFields(): void
     {
+        $this->withoutVite();
         $response = $this->get('/login');
 
         $response->assertSeeText(trans('auth.login.email.label'));
@@ -59,6 +62,13 @@ class LoginTest extends TestCase
         $user = User::factory()->disabled()->create();
 
         $response = $this->post('login', ['email' => $user->email, 'password' => 'password']);
+
+        $response->assertSessionHasErrors(['email']);
+    }
+
+    public function testNotExistingUserIsManagedCorrectly(): void
+    {
+        $response = $this->post('login', ['email' => $this->faker->email(), 'password' => 'password']);
 
         $response->assertSessionHasErrors(['email']);
     }
