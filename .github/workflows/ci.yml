@@ -54,8 +54,9 @@ jobs:
 
       - name: compile assets
         run: |
-          npm ci
-          npm run build
+          npm install -g pnpm
+          pnpm ci
+          pnpm run build
 
       - name: Filesystem permissions
         run: chmod a=rwx storage bootstrap/cache
