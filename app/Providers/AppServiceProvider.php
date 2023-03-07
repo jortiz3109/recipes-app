@@ -9,6 +9,6 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        Vite::macro('images', fn ($asset) => $this->asset("resources/images/{$asset}"));
+        Vite::macro('images', fn (string $asset) => Vite::asset("resources/images/{$asset}"));
     }
 }
