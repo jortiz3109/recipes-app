@@ -58,13 +58,7 @@ jobs:
       - name: Install NODE
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-
-      - name: compile assets
-        run: |
-          npm install -g pnpm
-          pnpm install
-          pnpm run build
+          node-version: 19
 
       - name: Filesystem permissions
         run: chmod a=rwx storage bootstrap/cache
