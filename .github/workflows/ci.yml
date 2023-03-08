@@ -5,10 +5,18 @@ on:
     branches:
       - develop
       - main
+    paths:
+      - '**.php'
+      - '**.js'
+      - '**.vue'
   push:
     branches:
       - develop
       - main
+    paths:
+      - '**.php'
+      - '**.js'
+      - '**.vue'
 
 jobs:
   run-tests:
