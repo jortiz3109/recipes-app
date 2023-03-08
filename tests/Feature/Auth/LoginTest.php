@@ -61,7 +61,7 @@ class LoginTest extends TestCase
 
         $response = $this->post('login', ['email' => $user->email, 'password' => 'password']);
 
-        $response->assertSessionHasErrors(['email']);
+        $response->assertSessionHasErrors(['email' => trans('auth.disabled')]);
     }
 
     public function testNotExistingUserIsManagedCorrectly(): void
