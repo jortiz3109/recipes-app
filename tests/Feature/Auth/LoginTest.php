@@ -4,9 +4,11 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Vite;
+use Illuminate\Support\Facades\Hash;
+use Mockery\MockInterface;
+use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
@@ -14,7 +16,6 @@ class LoginTest extends TestCase
 
     public function testItShowsTheLoginPage(): void
     {
-        $this->withoutVite();
         $response = $this->get('/login');
 
         $response->assertOk();
@@ -22,7 +23,6 @@ class LoginTest extends TestCase
 
     public function testLoginPageHasCorrectFields(): void
     {
-        $this->withoutVite();
         $response = $this->get('/login');
 
         $response->assertSeeText(trans('auth.login.email.label'));
@@ -31,9 +31,9 @@ class LoginTest extends TestCase
 
     public function testItValidatesLoginRequest(): void
     {
-       $response = $this->post('login', []);
+        $response = $this->post('login', []);
 
-       $response->assertSessionHasErrors(['email', 'password']);
+        $response->assertSessionHasErrors(['email', 'password']);
     }
 
     public function testUserCanLogin(): void
