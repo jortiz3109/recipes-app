@@ -10,6 +10,9 @@ window._ = _;
 import axios from 'axios';
 window.axios = axios;
 
+import * as Popper from '@popperjs/core'
+window.Popper = Popper
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
