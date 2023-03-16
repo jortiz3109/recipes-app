@@ -35,4 +35,27 @@ class IndexTest extends TestCase
         $response = $this->get('admin/users?page=2');
         $response->assertSeeText($user->name);
     }
+
+
+    /**
+     * @dataProvider searchProvider
+     */
+    public function testItCanSearchUsers(string $search): void
+    {
+        $userDontSee = User::factory()->create();
+        User::factory()->create(['name' => 'JohnDev_', 'email' => 'me@johndev.co']);
+
+        $response = $this->get("/admin/users?search={$search}");
+
+        $response->assertSeeTextInOrder(['JohnDev_', 'me@johndev.co']);
+        $response->assertDontSeeText($userDontSee->name);
+    }
+
+    public function searchProvider(): array
+    {
+        return [
+            'by name' => ['search' => 'JohnDev_'],
+            'by email' => ['search' => 'me@johndev.co'],
+        ];
+    }
 }

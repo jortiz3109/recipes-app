@@ -2,6 +2,7 @@
 
 use App\Providers\FortifyServiceProvider;
 use Illuminate\Support\Facades\Facade;
+use App\Providers\EntityServiceProvider;
 
 return [
 
@@ -196,7 +197,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         FortifyServiceProvider::class,
-
+        EntityServiceProvider::class
     ],
 
     /*
