@@ -2,15 +2,9 @@
     background-image: url("../images/login-background.jpg");
     background-size: cover;
 
-    .card {
-        background-color: rgba(22, 24, 27, 0.3);
-        backdrop-filter: blur(2em);
-        box-shadow: 0 0 2em white;
-    }
-
     img.logo {
         width: 8em;
-        margin-top: -5em;
+        margin-top: -4em;
     }
 
     .btn-login {

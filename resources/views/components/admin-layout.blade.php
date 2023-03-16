@@ -1,5 +1,6 @@
 <x-layout>
-    <div class="container">
+    @include('navbars.main')
+    <div class="container px-3 mx-auto">
         {{ $slot }}
     </div>
 </x-layout>

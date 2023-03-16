@@ -1,10 +1,9 @@
-<div class="mb-3">
-    <label for="{{ $name }}" class="form-label">{{ $label }}</label>
+<div class="form-control w-full max-w-xs">
+    <label for="{{ $name }}" class="label">{{ $label }}</label>
     {{ $slot }}
-
     @error($name)
-    <div class="invalid-feedback" {{ $attributes->merge(['id' => 'validationFeedbackFor' . $name]) }}>
+    <label class="label text-red-500" {{ $attributes->merge(['id' => 'validationFeedbackFor' . $name]) }}>
         {{ $message }}
-    </div>
+    </label>
     @endif
 </div>
