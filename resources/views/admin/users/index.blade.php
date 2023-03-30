@@ -1,22 +1,4 @@
-<x-admin-layout>
-    <div class="flex justify-between items-center mb-3">
-        <span class="normal-case text-xl">{{ trans('admin.users') }}</span>
-        <form action="{{ route('admin.users.index') }}" method="GET">
-            <div class="form-control">
-                <div class="input-group">
-                    <input type="search" name="search" value="{{ request('search') }}" id="search"
-                    placeholder="{{ trans('Search') }}" class="input input-bordered"/>
-                    <a href="{{ route('admin.users.index') }}" class="btn btn-square">
-                        <em class="fa-solid fa-eraser"></em>
-                    </a>
-                    <button class="btn btn-square">
-                        <em class="fa-solid fa-magnifying-glass"></em>
-                    </button>
-                </div>
-            </div>
-        </form>
-
-    </div>
+<x-admin-index :actions="$actions" :title="$title" :search="$search">
     <div class="card shadow-lg">
         <div class="overflow-x-auto">
             <table class="table w-full">
@@ -29,10 +11,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($users as $user)
+                @foreach($entities as $user)
                     <tr>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->name() }}</td>
+                        <td>{{ $user->email() }}</td>
                         <td>
                     <span @class([
                         'badge',
@@ -50,5 +32,5 @@
             </table>
         </div>
     </div>
-    {{ $users->appends(request()->only('search'))->links() }}
-</x-admin-layout>
+    {{ $entities->appends(request()->only('search'))->links() }}
+</x-admin-index>
