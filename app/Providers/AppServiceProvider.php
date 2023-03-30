@@ -10,6 +10,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::defaultView('pagination.daisyui');
-        Paginator::defaultSimpleView('pagination.simple-daisyui');
+        Paginator::defaultSimpleView('pagination.daisyui-simple');
     }
 }

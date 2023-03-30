@@ -1,4 +1,4 @@
-<div class="form-control w-full max-w-xs">
+<div class="form-control w-full mb-3">
     <label for="{{ $name }}" class="label">{{ $label }}</label>
     {{ $slot }}
     @error($name)
