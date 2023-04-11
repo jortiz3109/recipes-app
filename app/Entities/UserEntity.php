@@ -7,12 +7,12 @@ use Illuminate\Support\Carbon;
 
 readonly class UserEntity extends EloquentEntity
 {
-    public function name(): string
+    public function name(): ?string
     {
         return $this->getAttribute('name');
     }
 
-    public function email(): string
+    public function email(): ?string
     {
         return $this->getAttribute('email');
     }

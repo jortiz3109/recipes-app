@@ -25,12 +25,19 @@
                     {{ $user->isDisabled() ? trans('users.disabled') : trans('users.enabled') }}
                     </span>
                         </td>
-                        <td></td>
+                        <td>
+                            <a href="{{ route('admin.users.edit', $user->id()) }}">{{ trans('Edit') }}</a>
+                            <form action="{{ route('admin.users.destroy', $user->id()) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">{{ trans('Delete') }}</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    {{ $entities->appends(request()->only('search'))->links() }}
+    {{ $entities->appends(request()->only('search', 'perPage'))->links() }}
 </x-admin-index>

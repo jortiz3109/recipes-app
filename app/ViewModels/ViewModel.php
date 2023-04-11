@@ -2,8 +2,6 @@
 
 namespace App\ViewModels;
 
-use App\Entities\BaseEntity;
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\Support\Arrayable;
 
 abstract class ViewModel implements Arrayable

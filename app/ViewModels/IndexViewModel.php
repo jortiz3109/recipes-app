@@ -2,15 +2,15 @@
 
 namespace App\ViewModels;
 
-use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Pagination\AbstractPaginator;
 
 abstract class IndexViewModel extends ViewModel
 {
-    protected Paginator $entities;
+    protected AbstractPaginator $entities;
 
     const CREATE_BUTTON = 'create';
 
-    public function setEntities(Paginator $entities): void
+    public function setEntities(AbstractPaginator $entities): void
     {
         $this->entities = $entities;
     }

@@ -2,20 +2,18 @@
 
 namespace App\ViewModels\Admin;
 
-use App\Entities\UserEntity;
-use App\ViewModels\CreateViewModel;
+use App\ViewModels\EditViewModel;
 
-class UsersCreateViewModel extends CreateViewModel
+class UsersEditViewModel extends EditViewModel
 {
-
-    public function entity(): array
+    public function formAction(): string
     {
-        return ['user' => new UserEntity()];
+        return route('admin.users.update', $this->entity->id());
     }
 
     public function title(): string
     {
-        return trans('admin.users.create');
+        return trans('admin.users.edit', ['name' => $this->entity->name()]);
     }
 
     public function actions(): array
@@ -28,8 +26,8 @@ class UsersCreateViewModel extends CreateViewModel
         ];
     }
 
-    public function formAction(): string
+    public function entity(): array
     {
-        return route('admin.users.store');
+        return ['user' => $this->entity];
     }
 }
