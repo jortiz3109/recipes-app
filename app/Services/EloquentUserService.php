@@ -3,16 +3,17 @@
 namespace App\Services;
 
 use App\Contracts\EntityServiceContract;
+use App\Entities\BaseEntity;
 use App\Entities\UserEntity;
 use App\Models\User;
-use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Facades\Hash;
 
 class EloquentUserService implements EntityServiceContract
 {
-    public function index(string $search = null): Paginator
+    public function index(string $search = null): AbstractPaginator
     {
-        $users = User::select(['name', 'email', 'disabled_at'])->search($search)->paginate();
+        $users = User::select(['id', 'name', 'email', 'disabled_at'])->search($search)->paginate();
         $users->getCollection()->transform(fn($user) => UserEntity::crateFromModel($user));
 
         return $users;
@@ -25,5 +26,23 @@ class EloquentUserService implements EntityServiceContract
             'email' => $properties['email'],
             'password' => Hash::make($properties['password']),
         ]));
+    }
+
+    public function update(string $id, array $properties): BaseEntity
+    {
+        $user = User::find($id);
+        $user->update($properties);
+
+        return UserEntity::crateFromModel($user);
+    }
+
+    public function get(string $id): BaseEntity
+    {
+        return UserEntity::crateFromModel(User::findOrFail($id));
+    }
+
+    public function delete(string $id): bool
+    {
+        return User::where('id', $id)->delete();
     }
 }

@@ -6,9 +6,12 @@ use App\Contracts\EntityServiceContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Users\IndexRequest;
 use App\Http\Requests\Admin\Users\StoreRequest;
+use App\Http\Requests\Admin\Users\UpdateRequest;
 use App\ViewModels\Admin\UsersCreateViewModel;
+use App\ViewModels\Admin\UsersEditViewModel;
 use App\ViewModels\Admin\UsersIndexViewModel;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -32,5 +35,24 @@ class UserController extends Controller
     {
         $this->userService->store($request->validated());
         return response()->redirectToRoute('admin.users.index');
+    }
+
+    public function edit(int $id, UsersEditViewModel $viewModel): View
+    {
+        $user = $this->userService->get($id);
+        return view('admin.users.edit', $viewModel->for($user)->toArray());
+    }
+
+    public function update(UpdateRequest $request, int $id): RedirectResponse
+    {
+        $this->userService->update($id, $request->validated());
+        return response()->redirectToRoute('admin.users.index');
+    }
+
+    public function destroy(string $id): RedirectResponse
+    {
+        $this->userService->delete($id);
+
+        return response()-> redirectToRoute('admin.users.index');
     }
 }
