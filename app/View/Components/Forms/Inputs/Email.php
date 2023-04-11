@@ -17,8 +17,8 @@ class Email extends Component
         public string $label,
         public string $placeholder,
         public ?string $value,
-    )
-    {}
+    ) {
+    }
 
     public function render(): View
     {

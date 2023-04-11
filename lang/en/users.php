@@ -5,5 +5,5 @@ return [
     'email' => 'Email',
     'status' => 'Status',
     'disabled' => 'Disabled',
-    'enabled' => 'Enabled'
+    'enabled' => 'Enabled',
 ];

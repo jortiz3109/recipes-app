@@ -11,7 +11,8 @@ class Input extends Component
         public string $name,
         public ?string $label = null,
         public ?string $placeholder = null
-    ){}
+    ) {
+    }
 
     public function render(): View
     {

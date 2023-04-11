@@ -6,7 +6,6 @@ use App\ViewModels\IndexViewModel;
 
 class UsersIndexViewModel extends IndexViewModel
 {
-
     public function title(): string
     {
         return trans('admin.users.title');
@@ -17,15 +16,15 @@ class UsersIndexViewModel extends IndexViewModel
         return [
             self::CREATE_BUTTON => [
                 'route' => route('admin.users.create'),
-                'text' => trans('admin.users.create')
-            ]
+                'text' => trans('admin.users.create'),
+            ],
         ];
     }
 
     public function search(): array
     {
         return [
-            'action' => route('admin.users.index')
+            'action' => route('admin.users.index'),
         ];
     }
 }

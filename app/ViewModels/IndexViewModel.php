@@ -19,7 +19,7 @@ abstract class IndexViewModel extends ViewModel
     {
         return parent::toArray() + [
             'search' => $this->search(),
-            'entities' => $this->entities
+            'entities' => $this->entities,
         ];
     }
 

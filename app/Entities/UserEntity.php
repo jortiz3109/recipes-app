@@ -34,5 +34,4 @@ readonly class UserEntity extends EloquentEntity
     {
         return Arr::get($this->attributes, $name);
     }
-
 }

@@ -8,7 +8,7 @@ trait UseDataProvider
     {
         return [
             'eloquent' => ['provider' => 'eloquent'],
-            'api' => [ 'provider' => 'api']
+            'api' => ['provider' => 'api'],
         ];
     }
 }

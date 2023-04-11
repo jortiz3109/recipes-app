@@ -1,8 +1,8 @@
 <?php
 
+use App\Providers\EntityServiceProvider;
 use App\Providers\FortifyServiceProvider;
 use Illuminate\Support\Facades\Facade;
-use App\Providers\EntityServiceProvider;
 
 return [
 
@@ -43,7 +43,7 @@ return [
     |
     */
 
-    'debug' => (bool)env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -197,7 +197,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         FortifyServiceProvider::class,
-        EntityServiceProvider::class
+        EntityServiceProvider::class,
     ],
 
     /*
