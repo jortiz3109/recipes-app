@@ -56,7 +56,7 @@ class IndexTest extends TestCase
         $response->assertDontSeeText($userDontSee->name);
     }
 
-    public function searchProvider(): array
+    public static function searchProvider(): array
     {
         return [
             'by name' => ['search' => 'JohnDev_'],

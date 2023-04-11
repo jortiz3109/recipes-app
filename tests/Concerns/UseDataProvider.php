@@ -4,7 +4,7 @@ namespace Tests\Concerns;
 
 trait UseDataProvider
 {
-    public function serviceDataProvider(): array
+    public static function serviceDataProvider(): array
     {
         return [
             'eloquent' => ['provider' => 'eloquent'],
