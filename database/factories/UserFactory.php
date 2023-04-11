@@ -36,7 +36,7 @@ class UserFactory extends Factory
     public function disabled()
     {
         return $this->state(fn (array $attributes) => [
-            'disabled_at' => now()
+            'disabled_at' => now(),
         ]);
     }
 }

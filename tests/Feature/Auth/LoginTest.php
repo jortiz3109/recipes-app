@@ -38,7 +38,7 @@ class LoginTest extends TestCase
     {
         User::factory()->create([
             'email' => 'me@johndev.co',
-            'password' => Hash::make('secret')
+            'password' => Hash::make('secret'),
         ]);
 
         $this->post('login', ['email' => 'me@johndev.co', 'password' => 'secret']);

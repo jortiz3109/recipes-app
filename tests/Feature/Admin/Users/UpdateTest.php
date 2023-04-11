@@ -9,13 +9,14 @@ use Tests\TestCase;
 class UpdateTest extends TestCase
 {
     use RefreshDatabase;
+
     public function testItCanUpdateAUser(): void
     {
         //@TODO: Refactor to use services
         $user = User::factory()->create();
 
         $response = $this->put(
-            uri: '/admin/users/' . $user->id,
+            uri: '/admin/users/'.$user->id,
             data: ['name' => 'JohnDev_', 'email' => 'me@johndev.co']
         );
 

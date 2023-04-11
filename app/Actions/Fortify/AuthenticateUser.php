@@ -3,10 +3,10 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use Laravel\Fortify\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Http\Requests\LoginRequest;
 
 class AuthenticateUser
 {

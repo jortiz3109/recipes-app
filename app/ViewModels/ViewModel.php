@@ -14,6 +14,7 @@ abstract class ViewModel implements Arrayable
         ];
     }
 
-    abstract public function title():string;
+    abstract public function title(): string;
+
     abstract public function actions(): array;
 }

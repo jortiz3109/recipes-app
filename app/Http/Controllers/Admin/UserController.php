@@ -11,7 +11,6 @@ use App\ViewModels\Admin\UsersCreateViewModel;
 use App\ViewModels\Admin\UsersEditViewModel;
 use App\ViewModels\Admin\UsersIndexViewModel;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -23,6 +22,7 @@ class UserController extends Controller
     public function index(IndexRequest $request, UsersIndexViewModel $viewModel): View
     {
         $viewModel->setEntities($this->userService->index($request->input('search')));
+
         return view('admin.users.index', $viewModel->toArray());
     }
 
@@ -34,18 +34,21 @@ class UserController extends Controller
     public function store(StoreRequest $request): RedirectResponse
     {
         $this->userService->store($request->validated());
+
         return response()->redirectToRoute('admin.users.index');
     }
 
     public function edit(int $id, UsersEditViewModel $viewModel): View
     {
         $user = $this->userService->get($id);
+
         return view('admin.users.edit', $viewModel->for($user)->toArray());
     }
 
     public function update(UpdateRequest $request, int $id): RedirectResponse
     {
         $this->userService->update($id, $request->validated());
+
         return response()->redirectToRoute('admin.users.index');
     }
 
@@ -53,6 +56,6 @@ class UserController extends Controller
     {
         $this->userService->delete($id);
 
-        return response()-> redirectToRoute('admin.users.index');
+        return response()->redirectToRoute('admin.users.index');
     }
 }

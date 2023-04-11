@@ -7,7 +7,6 @@ use App\ViewModels\CreateViewModel;
 
 class UsersCreateViewModel extends CreateViewModel
 {
-
     public function entity(): array
     {
         return ['user' => new UserEntity()];

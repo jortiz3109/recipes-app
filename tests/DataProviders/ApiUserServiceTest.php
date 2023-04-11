@@ -56,7 +56,7 @@ class ApiUserServiceTest extends TestCase
         $this->assertSame($data['email'], $user->email());
     }
 
-    public function testItCanDeleteAUser():void
+    public function testItCanDeleteAUser(): void
     {
         $response = $this->userService->delete(3);
 
@@ -73,22 +73,22 @@ class ApiUserServiceTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = (object)['name' => fake()->name(), 'email' => fake()->safeEmail()];
+        $this->user = (object) ['name' => fake()->name(), 'email' => fake()->safeEmail()];
 
         Http::preventStrayRequests();
         Http::fake([
             'api.test/users?_page=*&_limit=*' => Http::response(
                 body: [
-                    ['id' => 1, 'name' => $this->user->name, 'email' => $this->user->email]
+                    ['id' => 1, 'name' => $this->user->name, 'email' => $this->user->email],
                 ],
                 headers: ['X-Total-Count' => 1]),
-            'api.test/users/1' =>  Http::response(
+            'api.test/users/1' => Http::response(
                 body: ['id' => 1, 'name' => $this->user->name, 'email' => $this->user->email]
             ),
             'api.test/users/2' => Http::response(status: Response::HTTP_OK),
             'api.test/users/3' => Http::response(status: Response::HTTP_OK),
             'api.test/users/5' => Http::response(status: Response::HTTP_NOT_FOUND),
-            'api.test/users' =>  Http::response(status: Response::HTTP_CREATED)
+            'api.test/users' => Http::response(status: Response::HTTP_CREATED),
         ]);
 
         $this->userService = new ApiUserService();

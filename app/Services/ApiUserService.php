@@ -37,7 +37,7 @@ readonly class ApiUserService implements EntityServiceContract
             url: 'users',
             query: [
                 '_page' => Paginator::resolveCurrentPage(),
-                '_limit' => request('perPage', 15)
+                '_limit' => request('perPage', 15),
             ]
         );
 

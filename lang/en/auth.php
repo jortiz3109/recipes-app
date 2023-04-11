@@ -21,11 +21,11 @@ return [
         'title' => 'Login',
         'email' => [
             'label' => 'Email',
-            'placeholder' => 'john.doe@mail.com'
+            'placeholder' => 'john.doe@mail.com',
         ],
         'password' => [
-            'label' => 'Password'
+            'label' => 'Password',
         ],
-    ]
+    ],
 
 ];

@@ -1,4 +1,5 @@
 <?php
+
 return [
     'title' => 'Administration',
     'users' => [
@@ -16,5 +17,5 @@ return [
         'password' => [
             'label' => 'Password',
         ],
-    ]
+    ],
 ];

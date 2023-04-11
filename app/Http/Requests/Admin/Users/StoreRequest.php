@@ -20,9 +20,9 @@ class StoreRequest extends FormRequest
                 'required',
                 'string',
                 'email',
-                'max:255'
+                'max:255',
             ],
-            'password' => ['required', 'string', new Password]
+            'password' => ['required', 'string', new Password],
         ];
     }
 }

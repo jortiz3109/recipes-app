@@ -14,7 +14,7 @@ class EloquentUserService implements EntityServiceContract
     public function index(string $search = null): AbstractPaginator
     {
         $users = User::select(['id', 'name', 'email', 'disabled_at'])->search($search)->paginate();
-        $users->getCollection()->transform(fn($user) => UserEntity::crateFromModel($user));
+        $users->getCollection()->transform(fn ($user) => UserEntity::crateFromModel($user));
 
         return $users;
     }

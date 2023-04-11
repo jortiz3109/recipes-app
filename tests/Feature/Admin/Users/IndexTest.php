@@ -4,7 +4,6 @@ namespace Tests\Feature\Admin\Users;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Http;
 use Tests\Concerns\UseDataProvider;
 use Tests\TestCase;
 
@@ -25,7 +24,7 @@ class IndexTest extends TestCase
      */
     public function testItHasAListOfUsers(): void
     {
-        $user =  User::factory()->create();
+        $user = User::factory()->create();
 
         $response = $this->get('/admin/users');
         $response->assertSeeText($user->name);
@@ -42,7 +41,6 @@ class IndexTest extends TestCase
         $response = $this->get('admin/users?page=2');
         $response->assertSeeText($user->name);
     }
-
 
     /**
      * @dataProvider searchProvider
