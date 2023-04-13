@@ -47,6 +47,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "test-sonarcloud": [
+            "XDEBUG_MODE=coverage vendor/bin/phpunit --stop-on-error --stop-on-failure --testdox --coverage-clover phpunit.coverage.xml --log-junit phpunit.report.xml"
         ]
     },
     "extra": {

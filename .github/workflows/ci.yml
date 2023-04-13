@@ -67,4 +67,15 @@ jobs:
         run: php artisan optimize:clear
 
       - name: Execute recipes tests
-        run: php artisan test
+        run: composer run-script test-sonarcloud
+
+      - name: Prepare paths for SonarQube analysis
+        run: |
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' phpunit.report.xml
+          sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' phpunit.coverage.xml
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
