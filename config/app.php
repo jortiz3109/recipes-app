@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\EntityServiceProvider;
+use App\Providers\FortifyServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -194,7 +196,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        FortifyServiceProvider::class,
+        EntityServiceProvider::class,
     ],
 
     /*

@@ -10,12 +10,7 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => fake()->name(),
@@ -35,6 +30,13 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    public function disabled()
+    {
+        return $this->state(fn (array $attributes) => [
+            'disabled_at' => now(),
         ]);
     }
 }

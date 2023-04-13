@@ -1,0 +1,14 @@
+.login {
+    background-image: url("../images/login-background.jpg");
+    background-size: cover;
+
+    img.logo {
+        width: 8em;
+        margin-top: -4em;
+    }
+
+    .btn-login {
+        background-color: rgba(22, 24, 27, 1);
+        color: white;
+    }
+}

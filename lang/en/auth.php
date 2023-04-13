@@ -14,7 +14,18 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
+    'disabled' => 'You cannot login because your user is currently disabled',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'login' => [
+        'title' => 'Login',
+        'email' => [
+            'label' => 'Email',
+            'placeholder' => 'john.doe@mail.com',
+        ],
+        'password' => [
+            'label' => 'Password',
+        ],
+    ],
 
 ];

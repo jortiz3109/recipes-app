@@ -4,6 +4,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/coverage
 .env
 .env.backup
 .env.production
@@ -15,4 +16,6 @@ npm-debug.log
 yarn-error.log
 /.fleet
 /.idea
+/.pnpm-store
 /.vscode
+.env.testing
