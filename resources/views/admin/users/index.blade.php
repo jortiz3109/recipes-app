@@ -1,7 +1,7 @@
 <x-admin-index :actions="$actions" :title="$title" :search="$search">
     <div class="card shadow-lg">
         <div class="overflow-x-auto">
-            <table class="table w-full" aria-description="{{ $title }}">
+            <table class="table w-full" aria-label="{{ $title }}">
                 <thead>
                 <tr>
                     <th scope="col">{{ trans('users.name') }}</th>
