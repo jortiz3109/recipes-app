@@ -3,10 +3,13 @@
 namespace Tests\Feature\Admin\Users;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class EditTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testItCanAccessEditView(): void
     {
         //@TODO: Refactor to use Services
