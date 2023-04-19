@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\DataProviders\Eloquent;
+namespace Tests\DataProviders\Eloquent\Users;
 
 use App\Services\EloquentUserService;
 use Illuminate\Foundation\Testing\RefreshDatabase;

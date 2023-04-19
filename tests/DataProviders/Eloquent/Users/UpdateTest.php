@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\DataProviders\Eloquent;
+namespace Tests\DataProviders\Eloquent\Users;
 
 use App\Models\User;
 use App\Services\EloquentUserService;
