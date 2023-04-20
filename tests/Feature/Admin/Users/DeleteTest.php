@@ -14,7 +14,7 @@ class DeleteTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->delete("/admin/users/{$user->id}");
+        $response = $this->actingAs($user)->delete("/admin/users/{$user->id}");
 
         $response->assertRedirect('/admin/users');
         $this->assertDatabaseMissing('users', $user->toArray());

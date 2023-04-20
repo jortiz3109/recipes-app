@@ -12,10 +12,9 @@ class UpdateTest extends TestCase
 
     public function testItCanUpdateAUser(): void
     {
-        //@TODO: Refactor to use services
         $user = User::factory()->create();
 
-        $response = $this->put(
+        $response = $this->actingAs($user)->put(
             uri: '/admin/users/'.$user->id,
             data: ['name' => 'JohnDev_', 'email' => 'me@johndev.co']
         );
