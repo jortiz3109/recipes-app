@@ -14,7 +14,8 @@ class IndexTest extends TestCase
 
     public function testItCanAccessToTheIndexOfUsers(): void
     {
-        $response = $this->get('/admin/users');
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)->get('/admin/users');
 
         $response->assertOk();
     }
@@ -26,7 +27,7 @@ class IndexTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->get('/admin/users');
+        $response = $this->actingAs($user)->get('/admin/users');
         $response->assertSeeText($user->name);
     }
 
@@ -35,10 +36,10 @@ class IndexTest extends TestCase
         User::factory()->count(15)->create();
         $user = User::factory()->create();
 
-        $response = $this->get('admin/users');
+        $response = $this->actingAs($user)->get('admin/users');
         $response->assertDontSeeText($user->name);
 
-        $response = $this->get('admin/users?page=2');
+        $response = $this->actingAs($user)->get('admin/users?page=2');
         $response->assertSeeText($user->name);
     }
 
@@ -48,9 +49,9 @@ class IndexTest extends TestCase
     public function testItCanSearchUsers(string $search): void
     {
         $userDontSee = User::factory()->create();
-        User::factory()->create(['name' => 'JohnDev_', 'email' => 'me@johndev.co']);
+        $user = User::factory()->create(['name' => 'JohnDev_', 'email' => 'me@johndev.co']);
 
-        $response = $this->get("/admin/users?search={$search}");
+        $response = $this->actingAs($user)->get("/admin/users?search={$search}");
 
         $response->assertSeeTextInOrder(['JohnDev_', 'me@johndev.co']);
         $response->assertDontSeeText($userDontSee->name);
