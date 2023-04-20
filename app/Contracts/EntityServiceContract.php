@@ -11,7 +11,7 @@ interface EntityServiceContract
 
     public function store(array $properties): BaseEntity;
 
-    public function get(string $id): BaseEntity;
+    public function find(string|int $value): BaseEntity;
 
     public function update(string $id, array $properties): BaseEntity;
 

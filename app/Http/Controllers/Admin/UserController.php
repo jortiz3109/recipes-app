@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function edit(int $id, UsersEditViewModel $viewModel): View
     {
-        $user = $this->userService->get($id);
+        $user = $this->userService->find($id);
 
         return view('admin.users.edit', $viewModel->for($user)->toArray());
     }

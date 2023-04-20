@@ -2,11 +2,15 @@
 
 namespace App\Entities;
 
+use App\Entities\Concerns\CanBeCreatedFromAModel;
+use App\Entities\Concerns\CanBeDisabled;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
 
-readonly class UserEntity extends EloquentEntity
+readonly class UserEntity extends BaseEntity
 {
+    use CanBeDisabled;
+    use CanBeCreatedFromAModel;
+
     public function name(): ?string
     {
         return $this->getAttribute('name');
@@ -17,17 +21,9 @@ readonly class UserEntity extends EloquentEntity
         return $this->getAttribute('email');
     }
 
-    public function disabledAt(): ?Carbon
+    public function password(): ?string
     {
-        return ($date = $this->getAttribute('disabled_at'))
-            ? Carbon::parse($date)
-            : null;
-
-    }
-
-    public function isDisabled(): bool
-    {
-        return null !== $this->disabledAt();
+        return $this->getAttribute('password');
     }
 
     private function getAttribute(string $name)

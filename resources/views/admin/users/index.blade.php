@@ -27,7 +27,12 @@
                         </td>
                         <td>
                             <a href="{{ route('admin.users.edit', $user->id()) }}">{{ trans('Edit') }}</a>
-                            <form action="{{ route('admin.users.destroy', $user->id()) }}" method="POST">
+                            <form
+                                id="deleteForm{{ $user->id() }}"
+                                action="{{ route('admin.users.destroy', $user->id()) }}"
+                                method="POST"
+                                onsubmit="return confirm('{{ trans('admin.users.confirm_deletion', ['name' => $user->name()]) }}');"
+                            >
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">{{ trans('Delete') }}</button>
