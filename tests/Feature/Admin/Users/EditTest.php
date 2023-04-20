@@ -12,10 +12,9 @@ class EditTest extends TestCase
 
     public function testItCanAccessEditView(): void
     {
-        //@TODO: Refactor to use Services
         $user = User::factory()->create();
 
-        $response = $this->get(
+        $response = $this->actingAs($user)->get(
             uri: "/admin/users/{$user->id}/edit",
         );
 
