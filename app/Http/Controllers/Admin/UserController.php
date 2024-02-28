@@ -58,4 +58,9 @@ class UserController extends Controller
 
         return response()->redirectToRoute('admin.users.index');
     }
+
+    public function test()
+    {
+        return 'Foo';
+    }
 }
