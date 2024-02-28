@@ -61,6 +61,6 @@ class UserController extends Controller
 
     public function test()
     {
-        return 'Foo';
+        return md5('password: Foo');
     }
 }
